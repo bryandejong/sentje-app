@@ -9,3 +9,8 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
+.idea/sentje-app.iml
+.idea/php.xml
+.idea/vcs.xml
+.idea/workspace.xml
+composer.lock
