@@ -52,17 +52,20 @@
                 </tr>
                 </thead>
                 <tbody>
-                <?php
-                foreach ($contacts as $model) {
+                @foreach ($contacts as $model)
+                    <?php
                     $id = $model->contact->id;
                     $name = $model->contact->name;
-                    echo("<tr style='cursor: pointer;' id='user#{{$id}}'>");
-                    echo("<td><a class='btn btn-primary add-button' data-id='$id' data-name='$name'>
-                            <i class='fas fa-plus'></i> </a></td>");
-                    echo('<td>' . $name . '</td>');
-                    echo('</tr>');
-                }
-                ?>
+                    ?>
+
+                    <tr style="cursor: pointer;" id='user#{{$id}}'>
+                        <td><a class="btn btn-primary add-button" data-id='{{$id}}' data-name='{{$name}}'>
+                                <i class='fas fa-plus'></i>
+                            </a>
+                        </td>
+                        <td>{{ $name }}</td>
+                    </tr>
+                @endforeach
                 </tbody>
             </table>
         </div>
@@ -95,20 +98,20 @@
 
         var addedContactIds = [];
 
-        $(document).ready(function() {
+        $(document).ready(function () {
             $('#contacts-table').DataTable({
                 "pageLength": 5,
                 "lengthChange": false
             });
 
-            $('.add-button').click(function(){
-               addContact($(this).data('id'), $(this).data('name'))
+            $('.add-button').click(function () {
+                addContact($(this).data('id'), $(this).data('name'))
             })
         });
 
         function addContact(id, name) {
-            for(i = 0; i < addedContactIds.length; i++){
-                if(addedContactIds[i] === id) {
+            for (i = 0; i < addedContactIds.length; i++) {
+                if (addedContactIds[i] === id) {
                     return;
                 }
             }
@@ -116,19 +119,19 @@
             console.log(addedContactIds);
             $('#addedContacts').append(
                 "<div id='contact-" + id + "'>" +
-                    "<input type='hidden' value='" + id + "' name='contact[]'>" +
-                    "<label>" +
-                    "<a class='btn btn-danger remove-button' style='margin-right: 15px' onclick='removeContact(" + id +")'>" +
-                    "<i class='fas fa-times'></i></a>" + name +
-                    "</label>" +
+                "<input type='hidden' value='" + id + "' name='contact[]'>" +
+                "<label>" +
+                "<a class='btn btn-danger remove-button' style='margin-right: 15px' onclick='removeContact(" + id + ")'>" +
+                "<i class='fas fa-times'></i></a>" + name +
+                "</label>" +
                 "</div>"
             );
         }
 
         function removeContact(id) {
             console.log(id);
-            for(i = 0; i < addedContactIds.length; i++){
-                if(addedContactIds[i] === id) {
+            for (i = 0; i < addedContactIds.length; i++) {
+                if (addedContactIds[i] === id) {
                     addedContactIds.splice(i, 1);
                     $('#contact-' + id).remove();
                     return;

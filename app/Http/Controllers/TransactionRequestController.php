@@ -10,6 +10,10 @@ use App\UserContact;
 use App\User;
 use App\BankAccount;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Date;
+use Carbon\Carbon;
+use Propaganistas\LaravelIntl\Facades\Currency;
+
 
 class TransactionRequestController extends Controller
 {
@@ -32,6 +36,8 @@ class TransactionRequestController extends Controller
             $paid = App\TransactionUser::all()->where('transaction_requests_id', $model->id)->where('paid', !null)->count();
             $model->totalSent = $total;
             $model->totalPaid = $paid;
+            $model->amount = Currency::format($model->amount, $model->currency);
+            $model->sent = Carbon::parse($model->sent)->toShortDateString();
         }
         return view('transactions/sent', ['sent' => $sent]);
     }
