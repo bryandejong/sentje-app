@@ -84,6 +84,11 @@
       <path value="$PROJECT_DIR$/vendor/doctrine/event-manager" />
       <path value="$PROJECT_DIR$/vendor/doctrine/dbal" />
       <path value="$PROJECT_DIR$/vendor/intervention/validation" />
+      <path value="$PROJECT_DIR$/vendor/punic/punic" />
+      <path value="$PROJECT_DIR$/vendor/umpirsky/locale-list" />
+      <path value="$PROJECT_DIR$/vendor/umpirsky/country-list" />
+      <path value="$PROJECT_DIR$/vendor/commerceguys/intl" />
+      <path value="$PROJECT_DIR$/vendor/propaganistas/laravel-intl" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.1" />
