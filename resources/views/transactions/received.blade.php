@@ -1,5 +1,7 @@
 {{-- resources/views/admin/dashboard.blade.php --}}
-
+<?php
+use Propaganistas\LaravelIntl\Facades\Currency;
+?>
 @extends('adminlte::page')
 
 @section('title', 'Dashboard')
@@ -24,7 +26,7 @@
         foreach ($received as $model) {
             echo('<tr>');
             echo('<td><a class="btn btn-primary" href="/transactions/pay/' . $model->request->id . '">Betalen</a></td>');
-            echo('<td>' . $model->request->amount . '</td>');
+            echo('<td>' . Currency::format($model->request->amount, $model->currency) . '</td>');
             echo('<td>' . $model->request->sender->name . '</td>');
             echo('<td>' . $model->request->note . '</td>');
             echo('<td>' . $model->request->sent . '</td>');

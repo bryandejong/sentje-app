@@ -59,13 +59,16 @@
 
     <script>
 
-        let rates;
+        var rates;
         let amount = {{$userRequest->request->amount}};
 
         $(document).ready(() => {
             $('#amount-span').text(amount);
 
             $.ajax({
+                type: "GET",
+                dataType: "application/json",
+                contentType: "",
                 url: "https://www.freeforexapi.com/api/live?pairs="
                     @for($i = 1; $i < $currencies->count(); $i++)
                     + "EUR{{$currencies[$i]->currency}}"
@@ -74,16 +77,15 @@
                         @endif
                     @endfor
                         +"",
-                // Work with the response
-                success: function (response) {
-                    rates = response.rates;
-                    console.log(rates);
-                }
+                success: function(data){
+                console.log(data);
+            }
             });
 
             $('#currency-select').change(function () {
+                console.log(this.rates);
                 const pair = "EUR" + $('#currency-select').val();
-                const rate = pair == "EUREUR" ? 1 : rates[pair].rate;
+                const rate = pair == "EUREUR" ? 1 : rates.rates[pair].rate;
                 $('#amount-span').text(amount * rate);
                 $('#currency-span').text($('#currency-select').val());
             })

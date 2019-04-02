@@ -50,32 +50,7 @@
         let rates;
         let amount = {{$userRequest->request->amount}};
 
-        $(document).ready(() => {
-            $('#amount-span').text(amount);
 
-            $.ajax({
-                url: "https://www.freeforexapi.com/api/live?pairs="
-                    @for($i = 1; $i < $currencies->count(); $i++)
-                    + "EUR{{$currencies[$i]->currency}}"
-                    @if($i < $currencies->count() - 1)
-                    + ","
-                    @endif
-                    @endfor
-                    +"",
-                // Work with the response
-                success: function (response) {
-                    rates = response.rates;
-                    console.log(rates);
-                }
-            });
-
-            $('#currency-select').change(function () {
-                const pair = "EUR" + $('#currency-select').val();
-                const rate = pair == "EUREUR" ? 1 : rates[pair].rate;
-                $('#amount-span').text(amount * rate);
-                $('#currency-span').text($('#currency-select').val());
-            })
-        });
     </script>
 
 @stop
