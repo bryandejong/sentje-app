@@ -34,23 +34,30 @@ Route::get('email/verify', 'Auth\VerificationController@show')->name('verificati
 Route::get('email/verify/{id}', 'Auth\VerificationController@verify')->name('verification.verify');
 Route::get('email/resend', 'Auth\VerificationController@resend')->name('verification.resend');
 
-Route::get('/home', 'HomeController@index')->name("home");
 
-Route::get('/accounts', 'BankAccountController@index')->name('accounts');
-Route::get('/accounts/add', 'BankAccountController@create')->name('accounts.add');
-Route::post('/accounts/add/finish', 'BankAccountController@store')->name('accounts.store');
-Route::post('/accounts/update', 'BankAccountController@update')->name('accounts.update');
 
-Route::get('/transactions/sent', 'TransactionRequestController@index_sent')->name('transactions.sent');
-Route::get('/transactions/received', 'TransactionRequestController@index_received')->name('transactions.received');
-Route::get('/transactions/new', 'TransactionRequestController@new')->name('transactions.new');
+Route::middleware(['auth', 'locale'])->group(function () {
+    // uses 'auth' middleware
+    Route::get('/home', 'HomeController@index')->name("home");
 
-Route::get('/transactions/pay/{id}', 'TransactionRequestController@pay')->name('transactions.pay');
-Route::post('/transactions/store', 'TransactionRequestController@store')->name('transactions.store');
-Route::post('/transactions/destroy', 'TransactionRequestController@destroy')->name('transactions.destroy');
-Route::post('/transactions/completePayment', 'TransactionRequestController@completePayment')->name('transactions.completePayment');
+    Route::get('/accounts', 'BankAccountController@index')->name('accounts');
+    Route::get('/accounts/add', 'BankAccountController@create')->name('accounts.add');
+    Route::post('/accounts/add/finish', 'BankAccountController@store')->name('accounts.store');
+    Route::post('/accounts/update', 'BankAccountController@update')->name('accounts.update');
 
-Route::get('/contacts', 'ContactController@index')->name('contacts');
-Route::get('/contacts/add', 'ContactController@create')->name('contact.add');
-Route::post('/contacts/add/finish', 'ContactController@store')->name('contacts.store');
-Route::delete('/contacts/delete', 'ContactController@delete')->name('contacts.delete');
+    Route::get('/transactions/sent', 'TransactionRequestController@index_sent')->name('transactions.sent');
+    Route::get('/transactions/received', 'TransactionRequestController@index_received')->name('transactions.received');
+    Route::get('/transactions/new', 'TransactionRequestController@new')->name('transactions.new');
+
+    Route::get('/transactions/pay/{id}', 'TransactionRequestController@pay')->name('transactions.pay');
+    Route::post('/transactions/store', 'TransactionRequestController@store')->name('transactions.store');
+    Route::post('/transactions/destroy', 'TransactionRequestController@destroy')->name('transactions.destroy');
+    Route::post('/transactions/completePayment', 'TransactionRequestController@completePayment')->name('transactions.completePayment');
+
+    Route::get('/contacts', 'ContactController@index')->name('contacts');
+    Route::get('/contacts/add', 'ContactController@create')->name('contact.add');
+    Route::post('/contacts/add/finish', 'ContactController@store')->name('contacts.store');
+    Route::delete('/contacts/delete', 'ContactController@delete')->name('contacts.delete');
+
+    Route::post('/settings/lang', 'SettingsController@setLanguage')->name('settings.lang');
+});

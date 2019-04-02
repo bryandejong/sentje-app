@@ -19,109 +19,124 @@
         <!-- Main Header -->
         <header class="main-header">
             @if(config('adminlte.layout') == 'top-nav')
-            <nav class="navbar navbar-static-top">
-                <div class="container">
-                    <div class="navbar-header">
-                        <a href="{{ url(config('adminlte.dashboard_url', 'home')) }}" class="navbar-brand">
-                            {!! config('adminlte.logo', '<b>Admin</b>LTE') !!}
-                        </a>
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
-                            <span><i class="fa fa-bars"></i></span>
-                        </button>
-                    </div>
+                <nav class="navbar navbar-static-top">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <a href="{{ url(config('adminlte.dashboard_url', 'home')) }}" class="navbar-brand">
+                                {!! config('adminlte.logo', '<b>Admin</b>LTE') !!}
+                            </a>
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                                    data-target="#navbar-collapse">
+                                <span><i class="fa fa-bars"></i></span>
+                            </button>
+                        </div>
 
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
-                        <ul class="nav navbar-nav">
-                            @each('adminlte::partials.menu-item-top-nav', $adminlte->menu(), 'item')
-                        </ul>
-                    </div>
-                    <!-- /.navbar-collapse -->
-            @else
-            <!-- Logo -->
-            <a href="{{ url(config('adminlte.dashboard_url', 'home')) }}" class="logo">
-                <!-- mini logo for sidebar mini 50x50 pixels -->
-                <span class="logo-mini">{!! config('adminlte.logo_mini', '<b>A</b>LT') !!}</span>
-                <!-- logo for regular state and mobile devices -->
-                <span class="logo-lg">{!! config('adminlte.logo', '<b>Admin</b>LTE') !!}</span>
-            </a>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+                            <ul class="nav navbar-nav">
+                                @each('adminlte::partials.menu-item-top-nav', $adminlte->menu(), 'item')
+                            </ul>
+                        </div>
+                        <!-- /.navbar-collapse -->
+                    @else
+                        <!-- Logo -->
+                            <a href="{{ url(config('adminlte.dashboard_url', 'home')) }}" class="logo">
+                                <!-- mini logo for sidebar mini 50x50 pixels -->
+                                <span class="logo-mini">{!! config('adminlte.logo_mini', '<b>A</b>LT') !!}</span>
+                                <!-- logo for regular state and mobile devices -->
+                                <span class="logo-lg">{!! config('adminlte.logo', '<b>Admin</b>LTE') !!}</span>
+                            </a>
 
-            <!-- Header Navbar -->
-            <nav class="navbar navbar-static-top" role="navigation">
-                <!-- Sidebar toggle button-->
-                <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-                    <span><i class="fas fa-bars"></i></span>
-                </a>
-            @endif
-                <!-- Navbar Right Menu -->
-                <div class="navbar-custom-menu">
-
-                    <ul class="nav navbar-nav">
-                        <li>
-                            @if(config('adminlte.logout_method') == 'GET' || !config('adminlte.logout_method') && version_compare(\Illuminate\Foundation\Application::VERSION, '5.3.0', '<'))
-                                <a href="{{ url(config('adminlte.logout_url', 'auth/logout')) }}">
-                                    <i class="fa fa-fw fa-power-off"></i> {{ trans('adminlte::adminlte.log_out') }}
+                            <!-- Header Navbar -->
+                            <nav class="navbar navbar-static-top" role="navigation">
+                                <!-- Sidebar toggle button-->
+                                <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                                    <span><i class="fas fa-bars"></i></span>
                                 </a>
-                            @else
-                                <a href="#"
-                                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                                >
-                                    <i class="fa fa-fw fa-power-off"></i> {{ trans('adminlte::adminlte.log_out') }}
-                                </a>
-                                <form id="logout-form" action="{{ url(config('adminlte.logout_url', 'auth/logout')) }}" method="POST" style="display: none;">
-                                    @if(config('adminlte.logout_method'))
-                                        {{ method_field(config('adminlte.logout_method')) }}
-                                    @endif
-                                    {{ csrf_field() }}
-                                </form>
                             @endif
-                        </li>
-                    </ul>
-                </div>
-                @if(config('adminlte.layout') == 'top-nav')
-                </div>
-                @endif
-            </nav>
+                            <!-- Navbar Right Menu -->
+                                <div class="navbar-custom-menu">
+
+                                    <ul class="nav navbar-nav">
+                                        <li>
+                                            @if(config('adminlte.logout_method') == 'GET' || !config('adminlte.logout_method') && version_compare(\Illuminate\Foundation\Application::VERSION, '5.3.0', '<'))
+                                                <a href="{{ url(config('adminlte.logout_url', 'auth/logout')) }}">
+                                                    <i class="fa fa-fw fa-power-off"></i> {{ trans('adminlte::adminlte.log_out') }}
+                                                </a>
+                                            @else
+                                                <a href="#"
+                                                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                                                >
+                                                    <i class="fa fa-fw fa-power-off"></i> {{ trans('adminlte::adminlte.log_out') }}
+                                                </a>
+                                                <form id="logout-form"
+                                                      action="{{ url(config('adminlte.logout_url', 'auth/logout')) }}"
+                                                      method="POST" style="display: none;">
+                                                    @if(config('adminlte.logout_method'))
+                                                        {{ method_field(config('adminlte.logout_method')) }}
+                                                    @endif
+                                                    {{ csrf_field() }}
+                                                </form>
+                                            @endif
+                                        </li>
+                                    </ul>
+                                </div>
+                            @if(config('adminlte.layout') == 'top-nav')
+                    </div>
+                    @endif
+                </nav>
         </header>
 
-        @if(config('adminlte.layout') != 'top-nav')
+    @if(config('adminlte.layout') != 'top-nav')
         <!-- Left side column. contains the logo and sidebar -->
-        <aside class="main-sidebar">
+            <aside class="main-sidebar">
 
-            <!-- sidebar: style can be found in sidebar.less -->
-            <section class="sidebar">
+                <!-- sidebar: style can be found in sidebar.less -->
+                <section class="sidebar">
 
-                <!-- Sidebar Menu -->
-                <ul class="sidebar-menu" data-widget="tree">
-                    @each('adminlte::partials.menu-item', $adminlte->menu(), 'item')
-                </ul>
-                <!-- /.sidebar-menu -->
-            </section>
-            <!-- /.sidebar -->
-        </aside>
-        @endif
+                    <!-- Sidebar Menu -->
+                    <ul class="sidebar-menu" data-widget="tree">
+                        @each('adminlte::partials.menu-item', $adminlte->menu(), 'item')
+                    </ul>
+                    <form method="POST" action="/settings/lang" id="lang-form">
+                        @csrf
+                        <input id="lang-input" name="lang" value="{{ Auth::user()->language }}" type="hidden">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false"><span id="language-span"></span><span
+                                class="caret"></span></button>
 
-        <!-- Content Wrapper. Contains page content -->
+                        <ul class="dropdown-menu">
+                            <li><a data-val="en" class="language-button">English</a></li>
+                            <li><a data-val="nl" class="language-button">Nederlands</a></li>
+                        </ul>
+                    </form>
+                    <!-- /.sidebar-menu -->
+                </section>
+                <!-- /.sidebar -->
+            </aside>
+    @endif
+
+    <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             @if(config('adminlte.layout') == 'top-nav')
-            <div class="container">
-            @endif
+                <div class="container">
+                @endif
 
-            <!-- Content Header (Page header) -->
-            <section class="content-header">
-                @yield('content_header')
-            </section>
+                <!-- Content Header (Page header) -->
+                    <section class="content-header">
+                        @yield('content_header')
+                    </section>
 
-            <!-- Main content -->
-            <section class="content">
+                    <!-- Main content -->
+                    <section class="content">
 
-                @yield('content')
+                        @yield('content')
 
-            </section>
-            <!-- /.content -->
-            @if(config('adminlte.layout') == 'top-nav')
-            </div>
-            <!-- /.container -->
+                    </section>
+                    <!-- /.content -->
+                    @if(config('adminlte.layout') == 'top-nav')
+                </div>
+                <!-- /.container -->
             @endif
         </div>
         <!-- /.content-wrapper -->
@@ -132,6 +147,21 @@
 
 @section('adminlte_js')
     <script src="{{ asset('vendor/adminlte/dist/js/adminlte.min.js') }}"></script>
+    <script>
+
+        let currentLang = "{{ Auth::user()->language }}";
+
+        $(document).ready(() => {
+            $("#language-span").text(currentLang == 'en' ? 'English' : 'Nederlands');
+
+            $(".language-button").click(function () {
+                $("#lang-input").val($(this).data('val'));
+                $("#lang-form").submit();
+            });
+        });
+
+
+    </script>
     @stack('js')
     @yield('js')
 @stop
