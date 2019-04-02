@@ -5,7 +5,7 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>{{ trans('Contacten') }}</h1>
+    <h1>{{ trans('home.contact') }}</h1>
 @stop
 
 @section('content')
@@ -21,7 +21,7 @@
         <tr id="contact-{{$contact->contact_id }}">
             <td> {{ $contact->contact->name }}</td>
             <td> {{ $contact->contact->email}}</td>
-            <td><a onclick="removeContact({{ $contact->contact_id }})" class="btn btn-danger">Delete</a></td>
+            <td><a onclick="removeContact({{ $contact->contact_id }})" class="btn btn-danger">{{trans('home.delete')}}</a></td>
         </tr>
         @endforeach
     </table>

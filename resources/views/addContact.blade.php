@@ -5,7 +5,7 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>{{ trans('home.overview') }}</h1>
+    <h1>{{ trans('home.addContact') }}</h1>
 @stop
 
 @section('content')
@@ -13,7 +13,7 @@
         {!! csrf_field()!!}
         <div class="form-group">
             <label for="exampleEmail1">Email</label>
-            <input name="email" type="text" class="form-control" id="exampleEmail" placeholder="Enter email">
+            <input name="email" type="text" class="form-control" id="exampleEmail" placeholder="{{trans('home.enterEmail')}}">
         </div>
         <input type="submit">
     </form>
