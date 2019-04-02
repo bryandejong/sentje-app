@@ -129,7 +129,7 @@
 
                     <!-- Main content -->
                     <section class="content">
-
+                        @include('inc.messages')
                         @yield('content')
 
                     </section>

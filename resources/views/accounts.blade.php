@@ -17,11 +17,11 @@
             <th></th>
         </tr>
 
-    @foreach($allBankaccounts as $bank ){
+    @foreach($allBankaccounts as $bank )
         <tr id="account-{{$bank->id}}">
         <td>{{ $bank->bank }} </td>
         <td>{{ $bank->iban }} </td>
-        <td><a onclick="hideAccount({{$bank->id}})" class="btn btn-danger" data-id="{{ $bank->id }}">Delete</a></td>');
+        <td><a onclick="hideAccount({{$bank->id}})" class="btn btn-danger" data-id="{{ $bank->id }}">Delete</a></td>
         </tr>
     @endforeach
     </table>
