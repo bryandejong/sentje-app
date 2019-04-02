@@ -5,7 +5,7 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>{{ trans('transactions.new_sentje') }}</h1>
+    <h1>{{ trans('home.confirm') }}</h1>
 @stop
 
 @section('content')
@@ -18,16 +18,16 @@
                     <h2 class="well well-lg"><span id="currency-span">{{ $userRequest->request->currency }}</span> <span id="amount-span"></span></h2>
                 </div>
                 <div style="text-align: center;">
-                    <h3>{{ trans("transactions.sent_by") }}</h3>
+                    <h3>{{ trans("home.sender") }}</h3>
                     <h4>{{ $userRequest->request->sender->name }}</h4>
                 </div>
                 <div style="text-align: center;">
-                    <h3>{{ trans("transactions.date") }}</h3>
+                    <h3>{{ trans("home.date") }}</h3>
                     <h4>{{ $userRequest->request->sent }}</h4>
                 </div>
 
                 <div class="input-group" style="max-width: 350px; margin: 25px auto 30px;">
-                    <label class="input-group-addon">{{ trans('transactions.currency') }}</label>
+                    <label class="input-group-addon">{{ trans('home.currency') }}</label>
                     <select id="currency-select" class="form-control" value="EUR" name="currency">
                         <option value="EUR">EUR</option>
                         <option value="USD">USD</option>
@@ -38,14 +38,14 @@
 
                 <input type="submit" class="btn btn-success center-block"
                        style="font-size: 2rem; padding: 15px; margin-top: 25px;"
-                       value="{{ trans('transactions.pay') }}">
+                       value="{{ trans('home.pay') }}">
             </form>
         </div>
     </div>
     <div class="btn btn-danger"
          style="margin: 15px; position: fixed; bottom: 30px; left: 230px; font-size: 2rem;">
         <a href="{{route('transactions.received')}}" style="color: white; display: block; padding: 10px">
-            <i class="fas fa-arrow-left"></i> {{ trans('gen.back') }}
+            <i class="fas fa-arrow-left"></i> {{ trans('home.back') }}
         </a>
     </div>
 

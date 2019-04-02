@@ -5,7 +5,7 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>{{ trans('transactions.new_sentje') }}</h1>
+    <h1>{{ trans('home.newSentje') }}</h1>
 @stop
 
 @section('content')
@@ -13,17 +13,17 @@
         @csrf
         <div style="max-width: 40%; float: left; margin-right: 10%;">
             <div class="form-group">
-                <label for="description">{{ trans('transactions.description') }}</label>
-                <input type="text" placeholder="{{ trans('transactions.description_example') }}" class="form-control"
+                <label for="description">{{ trans('home.description') }}</label>
+                <input type="text" placeholder="{{ trans('home.description') }}" class="form-control"
                        id="description" name="description" required>
             </div>
             <div class="form-group">
-                <label for="description">{{ trans('transactions.amount') }}</label>
+                <label for="description">{{ trans('home.amount') }}</label>
                 <div class="input-group">
                     <div class="input-group-addon">
                         <span class="input-group-text">$</span>
                     </div>
-                    <input type="number" placeholder="{{ trans('transactions.amount_example') }}" class="form-control"
+                    <input type="number" placeholder="{{ trans('home.amount') }}" class="form-control"
                            id="description" name="amount" step="0.01" required>
                 </div>
             </div>
@@ -33,7 +33,7 @@
                        id="description" name="date" required>
             </div>
             <div class="form-group">
-                <label for="bankaccount">{{ trans('gen.bank_account') }}</label>
+                <label for="bankaccount">{{ trans('home.bankaccount') }}</label>
                 <select name="bankaccount" value="{{ $bankaccounts->first() }}" class="form-control">
                     @foreach($bankaccounts as $account)
                         <option value="{{ $account->id }}">
@@ -48,7 +48,7 @@
                 <thead>
                 <tr>
                     <th></th>
-                    <th>Naam</th>
+                    <th>{{trans('home.firstname')}}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -77,13 +77,13 @@
 
         </div>
 
-        <input type="submit" class="btn btn-success" value="{{ trans('transactions.submit') }}"
+        <input type="submit" class="btn btn-success" value="{{ trans('home.submit') }}"
                style="position: fixed; bottom: 30px; right: 30px; margin: 15px; padding: 15px; font-size: 2rem;">
     </form>
     <div class="btn btn-danger"
          style="margin: 15px; position: fixed; bottom: 30px; left: 230px; padding: 15px; font-size: 2rem;">
         <a href="{{route('transactions.sent')}}" style="color: white;">
-            <i class="fas fa-arrow-left"></i> {{ trans('gen.back') }}
+            <i class="fas fa-arrow-left"></i> {{ trans('home.back') }}
         </a>
     </div>
 

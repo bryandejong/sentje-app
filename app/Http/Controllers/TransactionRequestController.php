@@ -51,6 +51,11 @@ class TransactionRequestController extends Controller
     {
         $bankaccounts = BankAccount::all()->where('users_id', Auth::id())->where('active', true);
         $contacts = UserContact::all()->where('user_id', Auth::id());
+        $bank = BankAccount::all()->where('users_id', Auth::id())->where('active', true);
+
+        if($bank->first() == null){
+          return redirect('/accounts')->with('danger', 'Je hebt nog geen bank account...');
+        }
 
         return view('transactions/new', ['bankaccounts' => $bankaccounts, 'contacts' => $contacts]);
     }
@@ -63,6 +68,7 @@ class TransactionRequestController extends Controller
      */
     public function store(Request $request)
     {
+
         $transaction = new TransactionRequest();
         $transaction->sender_id = Auth::id();
         $transaction->amount = $request->amount;
@@ -82,7 +88,7 @@ class TransactionRequestController extends Controller
             $transactionUser->save();
         }
 
-        return redirect("transactions/sent");
+        return redirect("transactions/sent")->with('success', 'Verzoek is gestuurd!');
     }
 
     /**

@@ -7,7 +7,7 @@ use Propaganistas\LaravelIntl\Facades\Currency;
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Ontvangen</h1>
+    <h1>{{trans('home.received')}}</h1>
 @stop
 
 @section('content')
@@ -15,10 +15,10 @@ use Propaganistas\LaravelIntl\Facades\Currency;
         <thead>
         <tr>
             <th></th>
-            <th>Bedrag</th>
-            <th>Verzender</th>
-            <th>Beschrijving</th>
-            <th>Datum</th>
+            <th>{{trans('home.amount')}}</th>
+            <th>{{trans('home.sender')}}</th>
+            <th>{{trans('home.description')}}</th>
+            <th>{{trans('home.date')}}</th>
         </tr>
         </thead>
         <tbody>
@@ -27,6 +27,7 @@ use Propaganistas\LaravelIntl\Facades\Currency;
             echo('<tr>');
             echo('<td><a class="btn btn-primary" href="/transactions/pay/' . $model->request->id . '">Betalen</a></td>');
             echo('<td>' . Currency::format($model->request->amount, $model->currency) . '</td>');
+            echo('<td><a class="btn btn-primary" href="/transactions/pay/' . $model->request->id . '">' . trans("home.pay") . '</a></td>');
             echo('<td>' . $model->request->sender->name . '</td>');
             echo('<td>' . $model->request->note . '</td>');
             echo('<td>' . $model->request->sent . '</td>');

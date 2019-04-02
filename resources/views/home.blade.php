@@ -9,13 +9,13 @@
 @stop
 
 @section('content')
-    <p>Welcome to this beautiful admin panel.</p>
+    <p>{{trans('home.intro')}}</p>
     <table style="width:100" class="table table-striped" id="testTable">
     <thead>
       <tr>
-        <th>Firstname</th>
-        <th>Lastname</th> 
-        <th>Age</th>
+        <th>{{trans('home.firstname')}}</th>
+        <th>{{trans('home.lastname')}}</th>
+        <th>{{trans('home.age')}}</th>
       </tr>
   </thead>
   <tbody>

@@ -5,23 +5,23 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Verstuurd</h1>
+    <h1>{{trans('home.sent')}}</h1>
 @stop
 
 @section('content')
     <div style="margin-bottom: 20px;">
         <a class="btn btn-primary" href="{{route('transactions.new')}}">
         <i class="fas fa-plus"></i>
-            {{ trans('transactions.new_sentje') }}
+            {{ trans('home.newSentje') }}
         </a>
     </div>
     <table style="width: 100%;" class="table table-striped" id="table">
     <thead>
       <tr>
-            <th>Aantal betaald</th>
-            <th>Bedrag</th>
-            <th>Beschrijving</th>
-            <th>Datum</th>
+            <th>{{trans('home.amountPaid')}}</th>
+            <th>{{trans('home.amount')}}</th>
+            <th>{{trans('home.description')}}</th>
+            <th>{{trans('home.date')}}</th>
             <th></th>
       </tr>
       </thead>
@@ -32,7 +32,7 @@
                     <td>{{ $model->amount }}</td>
                     <td>{{ $model->note }}</td>
                     <td>{{ $model->sent }}</td>
-                    <td>@if($model->canClose()) <a class="btn btn-warning" data-id="{{$model->id}}" onclick="removeRequest({{$model->id}})">Annuleren</a> @endif </td>
+                    <td>@if($model->canClose()) <a class="btn btn-warning" data-id="{{$model->id}}" onclick="removeRequest({{$model->id}})">{{trans('home.cancel')}}</a> @endif </td>
                 </tr>
               @endforeach
         </tbody>

@@ -24,12 +24,15 @@ class ContactController extends Controller
         $account = App\User::where('email', $request->email)->first();
         $allContacts = App\UserContact::all()->where('user_id', Auth::id());
 
+                if($account== null){
+                    return redirect('/contacts')->with('danger', 'Contact bestaat niet');
+                }
                 if($account->id == null){
                     return redirect('/contacts');
                 }
                 foreach ($allContacts as $contact){
                     if($contact->contact_id == $account->id){
-                        return redirect('/contacts');
+                        return redirect('/contacts')->with('danger', 'Contact bestaat al!');
                     }
                 }
 
@@ -38,7 +41,7 @@ class ContactController extends Controller
                 $contact -> contact_id = $account->id;
 
                 $contact -> save();
-                return redirect('/contacts');
+                return redirect('/contacts')->with('success', 'Contact is toegevoegd' );
 
     }
 

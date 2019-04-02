@@ -47,7 +47,7 @@ class BankAccountController extends Controller
         $bank -> iban = $request->IBAN;
         $bank->save();
 
-        return redirect('/accounts');
+        return redirect('/accounts')->with('success', 'Bank account is aangemaakt!');
     }
 
     public function update(Request $request)
