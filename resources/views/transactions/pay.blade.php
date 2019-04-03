@@ -67,8 +67,6 @@
 
             $.ajax({
                 type: "GET",
-                dataType: "application/json",
-                contentType: "",
                 url: "https://www.freeforexapi.com/api/live?pairs="
                     @for($i = 1; $i < $currencies->count(); $i++)
                     + "EUR{{$currencies[$i]->currency}}"
@@ -78,12 +76,13 @@
                     @endfor
                         +"",
                 success: function(data){
-                console.log(data);
-            }
+                            rates = JSON.parse(data);
+                            console.log(rates);
+                            console.log(rates['rates']);
+                },
             });
 
             $('#currency-select').change(function () {
-                console.log(this.rates);
                 const pair = "EUR" + $('#currency-select').val();
                 const rate = pair == "EUREUR" ? 1 : rates.rates[pair].rate;
                 $('#amount-span').text(amount * rate);
