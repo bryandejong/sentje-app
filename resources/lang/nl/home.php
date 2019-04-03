@@ -3,7 +3,7 @@
 return [
 
     'overview' => 'Overzicht',
-    'intro'    => 'Welkom bij onze mooie dashboard.',
+    'intro'    => 'Welkom bij Sentje',
     'firstname' => 'Voornaam',
     'lastname' => 'Achternaam',
     'age' => 'leeftijd',
@@ -16,7 +16,7 @@ return [
     'contact' => 'Contacten',
     'addContact' => 'Contact toevoegen',
     'enterEmail' => 'Uw email',
-    'home.new_sentje' => 'Nieuw sentje',
+    'new_sentje' => 'Nieuw sentje',
     'description' => 'Omschrijving',
     'amount' => 'Aantal',
     'receivers' => 'Ontvangers',
@@ -31,5 +31,6 @@ return [
     'received' => 'Ontvangen',
     'pay' => 'Betalen',
     'confirm' => 'Bevestigen',
-    'currency' => 'Valuta'
+    'currency' => 'Valuta',
+    'payment_requests' => 'Betaalverzoeken',
 ];

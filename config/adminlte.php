@@ -110,53 +110,42 @@ return [
     'menu' => [
         'MENU',
         [
-            'text'        => 'Overzicht',
+            'text'        => 'home.overview',
             'url'         => '/home',
             'icon'        => 'clipboard',
         ],
         [
-            'text'        => 'Rekeningen',
+            'text'        => 'home.bankaccounts',
             'url'         => '/accounts',
             'icon'        => 'piggy-bank',
         ],
         [
-            'text'        => 'Betaalverzoeken',
+            'text'        => 'home.payment_requests',
             'url'         => '/transactions',
             'icon'        => 'hand-holding-usd',
             'submenu' => [
                 [
-                    'text'        => 'Verstuurd',
+                    'text'        => 'home.sent',
                     'url'         => '/transactions/sent',
                     'icon'        => 'arrow-alt-circle-right',
                 ],
                 [
-                    'text'        => 'Ontvangen',
+                    'text'        => 'home.received',
                     'url'         => '/transactions/received',
                     'icon'        => 'arrow-alt-circle-left',
                 ],
                 [
-                    'text'        => 'Nieuw',
+                    'text'        => 'home.new_sentje',
                     'url'         => '/transactions/new',
                     'icon'        => 'plus',
                 ],
             ],
         ],
         [
-            'text'        => 'Contacten',
+            'text'        => 'home.contact',
             'url'         => '/contacts',
             'icon'        => 'user-friends',
         ],
-        'ACCOUNT SETTINGS',
-        [
-            'text' => 'Profile',
-            'url'  => 'admin/settings',
-            'icon' => 'user',
-        ],
-        [
-            'text' => 'Change Password',
-            'url'  => 'admin/settings',
-            'icon' => 'lock',
-        ]
     ],
 
     /*

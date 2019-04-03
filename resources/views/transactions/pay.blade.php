@@ -85,7 +85,7 @@
             $('#currency-select').change(function () {
                 const pair = "EUR" + $('#currency-select').val();
                 const rate = pair == "EUREUR" ? 1 : rates.rates[pair].rate;
-                $('#amount-span').text(amount * rate);
+                $('#amount-span').text((amount * rate).toFixed(2));
                 $('#currency-span').text($('#currency-select').val());
             })
         });

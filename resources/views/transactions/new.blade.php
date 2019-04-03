@@ -5,7 +5,7 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>{{ trans('home.newSentje') }}</h1>
+    <h1>{{ trans('home.new_sentje') }}</h1>
 @stop
 
 @section('content')
@@ -26,11 +26,6 @@
                     <input type="number" placeholder="{{ trans('home.amount') }}" class="form-control"
                            id="description" name="amount" step="0.01" required>
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="description">{{ trans('transactions.expiry_date') }}</label>
-                <input type="date" placeholder="{{trans('transactions.expiry_date_exmp')}}" class="form-control"
-                       id="description" name="date" required>
             </div>
             <div class="form-group">
                 <label for="bankaccount">{{ trans('home.bankaccount') }}</label>

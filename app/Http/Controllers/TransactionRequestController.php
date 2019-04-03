@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\Date;
 use Carbon\Carbon;
 use Propaganistas\LaravelIntl\Facades\Currency;
 
-
 class TransactionRequestController extends Controller
 {
     /**
@@ -22,13 +21,17 @@ class TransactionRequestController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index_received()
+    public function indexReceived()
     {
         $received = App\TransactionUser::all()->where('users_id', Auth::id())->where('paid', null);
+        foreach($received as $model){
+            $model->request->amount = Currency::format($model->request->amount, $model->request->currency);
+            $model->request->sent = Carbon::parse($model->request->sent)->toShortDateString();
+        }
         return view('/transactions/received', ['received' => $received]);
     }
 
-    public function index_sent()
+    public function indexSent()
     {
         $sent = App\TransactionRequest::all()->where('sender_id', Auth::id());
         foreach($sent as $model){
@@ -75,7 +78,7 @@ class TransactionRequestController extends Controller
         $transaction->note = $request->description;
         $transaction->bank_account_id = $request->bankaccount;
         $transaction->created = date("Y-m-d");
-        $transaction->sent = "2019-03-30";
+        $transaction->sent = date("Y-m-d");
         $transaction->image_url = "";
         $transaction->currency = "EUR";
         $transaction->save();
@@ -105,6 +108,7 @@ class TransactionRequestController extends Controller
     public function pay($id){
         $userRequest = App\TransactionUser::where('users_id', Auth::id())->where('transaction_requests_id', $id)->first();
         $currencies = App\Currency::all();
+        $userRequest->request->sent = Carbon::parse($userRequest->request->sent)->toShortDateString();
         return view('transactions/pay', ['userRequest' => $userRequest, 'currencies' => $currencies]);
     }
 
@@ -139,7 +143,6 @@ class TransactionRequestController extends Controller
 
     public function destroy(Request $request)
     {
-
         $transUsers = App\TransactionUser::where('transaction_requests_id', $request->id)->delete();
         $transRequest = App\TransactionRequest::where('id', $request->id)->first()->delete();
         dd($transUsers, $transRequest);

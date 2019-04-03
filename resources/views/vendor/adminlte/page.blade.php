@@ -98,14 +98,13 @@
                     <ul class="sidebar-menu" data-widget="tree">
                         @each('adminlte::partials.menu-item', $adminlte->menu(), 'item')
                     </ul>
-                    <form method="POST" action="/settings/lang" id="lang-form">
+                    <form method="POST" action="/settings/lang" id="lang-form" style="padding-left: 10px;">
                         @csrf
                         <input id="lang-input" name="lang" value="{{ Auth::user()->language }}" type="hidden">
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false"><span id="language-span"></span><span
+                                aria-haspopup="true" aria-expanded="false"><span id="language-span" style="width: 150px; display: inline-block;"></span><span
                                 class="caret"></span></button>
-
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu" style="position: relative; top: 0px; width: 150px; cursor: pointer;">
                             <li><a data-val="en" class="language-button">English</a></li>
                             <li><a data-val="nl" class="language-button">Nederlands</a></li>
                         </ul>

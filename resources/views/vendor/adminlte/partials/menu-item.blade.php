@@ -6,7 +6,7 @@
            @if (isset($item['target'])) target="{{ $item['target'] }}" @endif
         >
             <i class="fa fa-fw fa-{{ isset($item['icon']) ? $item['icon'] : 'circle-o' }} {{ isset($item['icon_color']) ? 'text-' . $item['icon_color'] : '' }}"></i>
-            <span>{{ $item['text'] }}</span>
+            <span>{{ trans($item['text']) }}</span>
             @if (isset($item['label']))
                 <span class="pull-right-container">
                     <span class="label label-{{ isset($item['label_color']) ? $item['label_color'] : 'primary' }} pull-right">{{ $item['label'] }}</span>

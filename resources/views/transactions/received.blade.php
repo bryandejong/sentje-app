@@ -25,9 +25,8 @@ use Propaganistas\LaravelIntl\Facades\Currency;
         <?php
         foreach ($received as $model) {
             echo('<tr>');
-            echo('<td><a class="btn btn-primary" href="/transactions/pay/' . $model->request->id . '">Betalen</a></td>');
-            echo('<td>' . Currency::format($model->request->amount, $model->currency) . '</td>');
             echo('<td><a class="btn btn-primary" href="/transactions/pay/' . $model->request->id . '">' . trans("home.pay") . '</a></td>');
+            echo('<td>' . $model->request->amount . '</td>');
             echo('<td>' . $model->request->sender->name . '</td>');
             echo('<td>' . $model->request->note . '</td>');
             echo('<td>' . $model->request->sent . '</td>');

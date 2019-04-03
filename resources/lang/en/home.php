@@ -3,7 +3,7 @@
 return [
 
     'overview' => 'Overview',
-    'intro' => 'Welcome to this beautiful admin panel.',
+    'intro' => 'Welcome to this beautiful panel.',
     'firstname' => 'Firstname',
     'lastname' => 'Lastname',
     'age' => 'Age',
@@ -16,7 +16,7 @@ return [
     'contact' => 'Connections',
     'addContact' => 'Add a connection',
     'enterEmail' => 'Enter email',
-    'home.new_sentje' => 'New sentje',
+    'new_sentje' => 'New sentje',
     'description' => 'Description',
     'amount' => 'Amount',
     'receivers' => 'Receivers',
@@ -31,5 +31,6 @@ return [
     'received' => 'Received',
     'pay' => 'Pay',
     'confirm' => 'Confirm',
-    'currency' => 'Currency'
+    'currency' => 'Currency',
+    'payment_requests' => 'Transaction Requests',
 ];

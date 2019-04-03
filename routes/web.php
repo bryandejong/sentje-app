@@ -45,8 +45,8 @@ Route::middleware(['auth', 'locale'])->group(function () {
     Route::post('/accounts/add/finish', 'BankAccountController@store')->name('accounts.store');
     Route::post('/accounts/update', 'BankAccountController@update')->name('accounts.update');
 
-    Route::get('/transactions/sent', 'TransactionRequestController@index_sent')->name('transactions.sent');
-    Route::get('/transactions/received', 'TransactionRequestController@index_received')->name('transactions.received');
+    Route::get('/transactions/sent', 'TransactionRequestController@indexSent')->name('transactions.sent');
+    Route::get('/transactions/received', 'TransactionRequestController@indexReceived')->name('transactions.received');
     Route::get('/transactions/new', 'TransactionRequestController@new')->name('transactions.new');
 
     Route::get('/transactions/pay/{id}', 'TransactionRequestController@pay')->name('transactions.pay');

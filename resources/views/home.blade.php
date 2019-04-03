@@ -9,28 +9,7 @@
 @stop
 
 @section('content')
-    <p>{{trans('home.intro')}}</p>
-    <table style="width:100" class="table table-striped" id="testTable">
-    <thead>
-      <tr>
-        <th>{{trans('home.firstname')}}</th>
-        <th>{{trans('home.lastname')}}</th>
-        <th>{{trans('home.age')}}</th>
-      </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Jill</td>
-      <td>Smith</td> 
-      <td>50</td>
-    </tr>
-    <tr>
-      <td>Eve</td>
-      <td>Jackson</td> 
-      <td>94</td>
-    </tr>
-  </tbody>
-</table>
+    <p>{{ trans('home.intro') }}</p>
 @stop
 
 @section('css')
