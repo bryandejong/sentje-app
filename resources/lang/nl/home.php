@@ -33,4 +33,6 @@ return [
     'confirm' => 'Bevestigen',
     'currency' => 'Valuta',
     'payment_requests' => 'Betaalverzoeken',
+    'note_example' => 'Voeg hier een aanvullende notitie toe',
+    'note' => 'Notitie',
 ];

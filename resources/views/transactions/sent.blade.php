@@ -9,6 +9,7 @@
 @stop
 
 @section('content')
+    <div id="response-message"></div>
     <div style="margin-bottom: 20px;">
         <a class="btn btn-primary" href="{{route('transactions.new')}}">
         <i class="fas fa-plus"></i>
@@ -49,18 +50,24 @@
             $("#table").DataTable();
         });
         function removeRequest(id){
-            $('#request-' + id).remove();
             $.ajax({
                 method: 'POST', // Type of response and matches what we said in the route
                 url: '/transactions/destroy', // This is the url we gave in the route
                 data: {
                     'id' : id,
                     '_token': "{{csrf_token()}}"}, // a JSON object to send back
-                success: function(response){ // What to do if we succeed
+                success: function(response){ // What to do if we
+                    $('#request-' + id).remove();
+                    $("#response-message").html("<div class=\'alert alert-success text-center\'>Betaalverzoek succesvol verwijderd</div>");
                 },
                 error: function(jqXHR, textStatus, errorThrown) { // What to do if we fail
                     console.log(JSON.stringify(jqXHR));
                     console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
+                },
+                statusCode: {
+                    403: function(){
+                        $("#response-message").html("<div class=\'alert alert-danger text-center\'>Verwijderen niet toegestaan</div>");
+                    }
                 }
             });
         }

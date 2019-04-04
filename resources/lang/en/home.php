@@ -33,4 +33,6 @@ return [
     'confirm' => 'Confirm',
     'currency' => 'Currency',
     'payment_requests' => 'Transaction Requests',
+    'note_example' => 'Add optional note here',
+    'note' => 'Note'
 ];

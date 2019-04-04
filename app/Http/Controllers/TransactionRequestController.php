@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Date;
 use Carbon\Carbon;
 use Propaganistas\LaravelIntl\Facades\Currency;
+use Symfony\Component\HttpFoundation\Response;
 
 class TransactionRequestController extends Controller
 {
@@ -115,7 +116,7 @@ class TransactionRequestController extends Controller
     public function completePayment(Request $request) {
         $userRequest = App\TransactionUser::where('users_id', Auth::id())
                 ->where('transaction_requests_id', $request->transaction_id)
-                ->update(['paid' => date("Y-m-d"), 'currency' => $request->currency]);
+                ->update(['paid' => date("Y-m-d"), 'currency' => $request->currency, 'paymentNote' => $request->note]);
 
         return redirect('transactions/received');
     }
@@ -143,7 +144,14 @@ class TransactionRequestController extends Controller
 
     public function destroy(Request $request)
     {
-        $transUsers = App\TransactionUser::where('transaction_requests_id', $request->id)->delete();
+
+        $transUsers = App\TransactionUser::where('transaction_requests_id', $request->id);
+        foreach($transUsers as $model) {
+            if($model->paid != null) {
+                return response()->json(['message' => 'Transaction with existing payments cannot be cancelled'], 403);
+            }
+        }
+        $transUsers->delete();
         $transRequest = App\TransactionRequest::where('id', $request->id)->first()->delete();
         dd($transUsers, $transRequest);
     }

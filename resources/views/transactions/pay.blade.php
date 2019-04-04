@@ -26,6 +26,11 @@
                     <h4>{{ $userRequest->request->sent }}</h4>
                 </div>
 
+                <div class="input-group" style="margin: auto; max-width: 80%; text-align: center;">
+                    <h3 for="note">{{ trans("home.note") }}</h3>
+                    <input id="note" name="note" placeholder="{{ trans("home.note_example") }}" class="form-control" style="width: 300px;">
+                </div>
+
                 <div class="input-group" style="max-width: 350px; margin: 25px auto 30px;">
                     <label class="input-group-addon">{{ trans('home.currency') }}</label>
                     <select id="currency-select" class="form-control" value="EUR" name="currency">
