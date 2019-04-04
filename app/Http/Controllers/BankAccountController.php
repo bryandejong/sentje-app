@@ -7,6 +7,7 @@ use Faker\Calculator\Iban;
 use Illuminate\Http\Request;
 use App;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 
 class BankAccountController extends Controller
 {
@@ -43,8 +44,8 @@ class BankAccountController extends Controller
         $this->validate($request, ['IBAN' => 'iban']);
         $bank = new BankAccount();
         $bank -> users_id = Auth::id();
-        $bank -> bank = $request->bank;
-        $bank -> iban = $request->IBAN;
+        $bank->fill(['bank' => Crypt::encrypt($request->bank)]);
+        $bank->fill(['iban' => Crypt::encrypt($request->IBAN)]);
         $bank->save();
 
         return redirect('/accounts')->with('success', 'Bank account is aangemaakt!');
