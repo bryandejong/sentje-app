@@ -1,5 +1,4 @@
 {{-- resources/views/admin/dashboard.blade.php --}}
-
 @extends('adminlte::page')
 
 @section('title', 'Dashboard')
@@ -19,8 +18,8 @@
 
     @foreach($allBankaccounts as $bank )
         <tr id="account-{{$bank->id}}">
-        <td>{{ $bank->bank }} </td>
-        <td>{{ $bank->iban }} </td>
+        <td>{{ \Illuminate\Support\Facades\Crypt::decrypt($bank->bank) }} </td>
+        <td>{{ \Illuminate\Support\Facades\Crypt::decrypt($bank->iban) }} </td>
         <td><a onclick="hideAccount({{$bank->id}})" class="btn btn-danger" data-id="{{ $bank->id }}">{{trans('home.delete')}}</a></td>
         </tr>
     @endforeach
