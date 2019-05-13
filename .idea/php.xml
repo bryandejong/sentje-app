@@ -89,6 +89,7 @@
       <path value="$PROJECT_DIR$/vendor/umpirsky/country-list" />
       <path value="$PROJECT_DIR$/vendor/commerceguys/intl" />
       <path value="$PROJECT_DIR$/vendor/propaganistas/laravel-intl" />
+      <path value="$PROJECT_DIR$/vendor/squizlabs/php_codesniffer" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.1" />
