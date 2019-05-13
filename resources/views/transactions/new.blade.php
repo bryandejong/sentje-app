@@ -32,7 +32,7 @@
                 <select name="bankaccount" value="{{ $bankaccounts->first() }}" class="form-control">
                     @foreach($bankaccounts as $account)
                         <option value="{{ $account->id }}">
-                            {{ $account->bank }} | {{ $account->iban }}
+                            {{ \Illuminate\Support\Facades\Crypt::decrypt($bank->bank) }} | {{ \Illuminate\Support\Facades\Crypt::decrypt($bank->iban) }}
                         </option>
                     @endforeach
                 </select>

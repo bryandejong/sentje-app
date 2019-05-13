@@ -9,6 +9,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/intervention/validation" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/propaganistas/laravel-intl" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/punic/punic" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/squizlabs/php_codesniffer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/umpirsky/country-list" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/umpirsky/locale-list" />
     </content>
