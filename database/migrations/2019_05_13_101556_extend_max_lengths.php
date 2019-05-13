@@ -13,11 +13,6 @@ class ExtendMaxLengths extends Migration
      */
     public function up()
     {
-        Schema::table('users', function($table)
-        {
-            $table->string('email', 300)->change();
-        });
-
         Schema::table('bank_accounts', function($table)
         {
             $table->string('bank', 300)->change();
