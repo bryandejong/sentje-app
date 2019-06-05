@@ -114,11 +114,23 @@ class TransactionRequestController extends Controller
     }
 
     public function completePayment(Request $request) {
+        $mollie = new \Mollie\Api\MollieApiClient();
+        $mollie->setApiKey("test_uaUHPuuRsJW6Gmz9K5Ee99rDrBdbak");
+        $payment = $mollie->payments->create([
+            "amount" => [
+                "currency" => "EUR",
+                "value" => "10.00"
+            ],
+            "description" => "My first API payment",
+            "redirectUrl" => "http://localhost.sentje/",
+            "webhookUrl"  => "http://comitto.serveo.net/transactions/update",
+        ]);
+
         $userRequest = App\TransactionUser::where('users_id', Auth::id())
                 ->where('transaction_requests_id', $request->transaction_id)
                 ->update(['paid' => date("Y-m-d"), 'currency' => $request->currency, 'paymentNote' => $request->note]);
 
-        return redirect('transactions/received');
+        return redirect($payment->getCheckoutUrl());
     }
 
     /**
@@ -138,8 +150,10 @@ class TransactionRequestController extends Controller
      * @param  \App\TransactionRequest  $transactionRequest
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TransactionRequest $transactionRequest)
+    public function update(Request $request)
     {
+        error_log("Logging");
+        error_log($request->id);
     }
 
     public function destroy(Request $request)
