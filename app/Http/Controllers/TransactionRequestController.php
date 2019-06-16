@@ -72,7 +72,6 @@ class TransactionRequestController extends Controller
      */
     public function store(Request $request)
     {
-
         $transaction = new TransactionRequest();
         $transaction->sender_id = Auth::id();
         $transaction->amount = $request->amount;
@@ -114,21 +113,32 @@ class TransactionRequestController extends Controller
     }
 
     public function completePayment(Request $request) {
+                
+        $currency = $request->currency;
+
+        $userRequest = App\TransactionUser::where('users_id', Auth::id())
+                ->where('transaction_requests_id', $request->transaction_id)->first();
+
+        $amount = App\Currency::convertTo($userRequest->request->amount, $currency);
+
+        $amount = number_format((float)$amount, 2, '.', '');
+
         $mollie = new \Mollie\Api\MollieApiClient();
         $mollie->setApiKey("test_uaUHPuuRsJW6Gmz9K5Ee99rDrBdbak");
         $payment = $mollie->payments->create([
             "amount" => [
-                "currency" => "EUR",
-                "value" => "10.00"
+                "currency" => $currency,
+                "value" => "$amount"
             ],
             "description" => "My first API payment",
             "redirectUrl" => "http://localhost.sentje/",
             "webhookUrl"  => "http://comitto.serveo.net/transactions/update",
         ]);
-
-        $userRequest = App\TransactionUser::where('users_id', Auth::id())
+        //ssh -R comitto.serveo.net:80:127.0.0.2:80 serveo.net for webhook to work
+        
+        App\TransactionUser::where('users_id', Auth::id())
                 ->where('transaction_requests_id', $request->transaction_id)
-                ->update(['paid' => date("Y-m-d"), 'currency' => $request->currency, 'paymentNote' => $request->note]);
+                ->update(['paid' => date("Y-m-d"), 'currency' => $request->currency, 'paymentNote' => $request->note, 'mollie_id' => $payment->id]);
 
         return redirect($payment->getCheckoutUrl());
     }
@@ -152,8 +162,9 @@ class TransactionRequestController extends Controller
      */
     public function update(Request $request)
     {
-        error_log("Logging");
-        error_log($request->id);
+        App\TransactionUser::where('mollie_id', $request->id)
+                ->update(['paid' => date("Y-m-d")]);
+        error_log($request);
     }
 
     public function destroy(Request $request)

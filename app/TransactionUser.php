@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Builder;
 
 class TransactionUser extends Model
 {
-    protected $fillable = ['paid', 'currency'];
+    protected $fillable = ['paid', 'currency', 'mollie_id'];
     public $incrementing = false;
 
     public function receiver(){

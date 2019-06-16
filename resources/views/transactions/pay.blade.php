@@ -15,7 +15,7 @@
             <form method="post" action="/transactions/completePayment">
                 @csrf
                 <div class="input-group" style="margin: auto; max-width: 80%; text-align: center;">
-                    <h2 class="well well-lg"><span id="currency-span">{{ $userRequest->request->currency }}</span> <span id="amount-span"></span></h2>
+                    <h2 class="well well-lg"><span id="amount-span">{{ $userRequest->request->amount }}</span><span id="currency-span">{{ $userRequest->request->currency }}</span></h2>
                 </div>
                 <div style="text-align: center;">
                     <h3>{{ trans("home.sender") }}</h3>
@@ -28,7 +28,7 @@
 
                 <div class="input-group" style="margin: auto; max-width: 80%; text-align: center;">
                     <h3 for="note">{{ trans("home.note") }}</h3>
-                    <input id="note" name="note" placeholder="{{ trans("home.note_example") }}" class="form-control" style="width: 300px;">
+                    <input id="note" name="note" placeholder="{{ trans("home.note_example")}}" class="form-control" style="width: 300px;">
                 </div>
 
                 <div class="input-group" style="max-width: 350px; margin: 25px auto 30px;">
@@ -61,39 +61,4 @@
 @stop
 
 @section('js')
-
-    <script>
-
-        var rates;
-        let amount = {{$userRequest->request->amount}};
-
-        $(document).ready(() => {
-            $('#amount-span').text(amount);
-
-            $.ajax({
-                type: "GET",
-                url: "https://www.freeforexapi.com/api/live?pairs="
-                    @for($i = 1; $i < $currencies->count(); $i++)
-                    + "EUR{{$currencies[$i]->currency}}"
-                        @if($i < $currencies->count() - 1)
-                        + ","
-                        @endif
-                    @endfor
-                        +"",
-                success: function(data){
-                            rates = JSON.parse(data);
-                            console.log(rates);
-                            console.log(rates['rates']);
-                },
-            });
-
-            $('#currency-select').change(function () {
-                const pair = "EUR" + $('#currency-select').val();
-                const rate = pair == "EUREUR" ? 1 : rates.rates[pair].rate;
-                $('#amount-span').text((amount * rate).toFixed(2));
-                $('#currency-span').text($('#currency-select').val());
-            })
-        });
-    </script>
-
 @stop
