@@ -88,6 +88,7 @@ class TransactionRequestController extends Controller
             $transactionUser->users_id = $contact;
             $transactionUser->transaction_requests_id = $transaction->id;
             $transactionUser->currency = 'EUR';
+            $transactionUser->mollie_id = "";
             $transactionUser->save();
         }
 
